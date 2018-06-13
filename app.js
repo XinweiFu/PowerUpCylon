@@ -14,35 +14,44 @@ Cylon.robot({
   work: function(my) {
     var thrust = 0;
     var rudder = 0;
-    
+    var canRudder = false;
+
     var cb = function(err) {
       if (!!err) {
         console.log(err);
+      } else {
+        if (canRudder) {
+          canRudder = false;
+          my.powerup.setRudder(rudder, cb);
+        }
+        else {
+          my.powerup.setThrust(thrust, cb);
+        }
       }
     }
 
-    my.keyboard.on('w', function(key) {
+    my.powerup.setThrust(thrust, cb);
+
+    my.keyboard.on('up', function(key) {
         thrust = Math.min(thrust + 25, 250);
-        my.powerup.setThrust(thrust, cb);
-        console.log("W thrust = ", thrust);
+        console.log("UP thrust = ", thrust);
     });
 
-    my.keyboard.on('s', function(key) {
+    my.keyboard.on('down', function(key) {
         thrust = Math.max(thrust - 25, 0);
-        my.powerup.setThrust(thrust, cb);
-        console.log("S thrust = ", thrust);
+        console.log("DOWN thrust = ", thrust);
     });
 
-    my.keyboard.on('a', function(key) {
+    my.keyboard.on('left', function(key) {
         rudder = Math.min(rudder + 30, 120);
-        my.powerup.setRudder(rudder, cb);
-        console.log("A rudder = ", rudder);
+        canRudder = true;
+        console.log("LEFT rudder = ", rudder);
     });
 
-    my.keyboard.on('d', function(key) {
+    my.keyboard.on('right', function(key) {
         rudder = Math.max(rudder - 30, -120);
-        my.powerup.setRudder(rudder, cb);   
-        console.log("D rudder = ", rudder);
+        canRudder = true;
+        console.log("RIGHT rudder = ", rudder);
     });
   }
 }).start();
