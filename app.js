@@ -27,7 +27,7 @@ Cylon.robot({
     my.keyboard.on('up', function(key) {
         if (canSet) {
             canSet = false;
-            thrust = Math.min(thrust + 25, 250);
+            thrust = Math.min(thrust + 100, 250);
             console.log("UP thrust = ", thrust); 
             my.powerup.setThrust(thrust, setDone);
         }
@@ -36,7 +36,7 @@ Cylon.robot({
     my.keyboard.on('down', function(key) {
         if (canSet) {
             canSet = false;
-            thrust = Math.max(thrust - 25, 0);
+            thrust = Math.max(thrust - 100, 0);
             console.log("DOWN thrust = ", thrust);
             my.powerup.setThrust(thrust, setDone);
         }
@@ -45,7 +45,7 @@ Cylon.robot({
     my.keyboard.on('left', function(key) {
         if (canSet) {
             canSet = false;
-            rudder = Math.min(rudder + 30, 120);
+            rudder = Math.min(rudder + 60, 120);
             console.log("LEFT rudder = ", rudder);
             my.powerup.setRudder(rudder, setDone);
         }
@@ -54,7 +54,7 @@ Cylon.robot({
     my.keyboard.on('right', function(key) {
         if (canSet) {
             canSet = false;
-            rudder = Math.max(rudder - 30, -120);
+            rudder = Math.max(rudder - 60, -120);
             console.log("RIGHT rudder = ", rudder);
             my.powerup.setRudder(rudder, setDone);
         }
