@@ -12,46 +12,52 @@ Cylon.robot({
   },
 
   work: function(my) {
+    var canSet = true;
     var thrust = 0;
     var rudder = 0;
-    var canRudder = false;
 
-    var cb = function(err) {
+    var setDone = function(err) {
       if (!!err) {
         console.log(err);
       } else {
-        if (canRudder) {
-          canRudder = false;
-          my.powerup.setRudder(rudder, cb);
-        }
-        else {
-          my.powerup.setThrust(thrust, cb);
-        }
+        canSet = true;
       }
     }
 
-    my.powerup.setThrust(thrust, cb);
-
     my.keyboard.on('up', function(key) {
-        thrust = Math.min(thrust + 25, 250);
-        console.log("UP thrust = ", thrust);
+        if (canSet) {
+            canSet = false;
+            thrust = Math.min(thrust + 25, 250);
+            console.log("UP thrust = ", thrust); 
+            my.powerup.setThrust(thrust, setDone);
+        }
     });
 
     my.keyboard.on('down', function(key) {
-        thrust = Math.max(thrust - 25, 0);
-        console.log("DOWN thrust = ", thrust);
+        if (canSet) {
+            canSet = false;
+            thrust = Math.max(thrust - 25, 0);
+            console.log("DOWN thrust = ", thrust);
+            my.powerup.setThrust(thrust, setDone);
+        }
     });
 
     my.keyboard.on('left', function(key) {
-        rudder = Math.min(rudder + 30, 120);
-        canRudder = true;
-        console.log("LEFT rudder = ", rudder);
+        if (canSet) {
+            canSet = false;
+            rudder = Math.min(rudder + 30, 120);
+            console.log("LEFT rudder = ", rudder);
+            my.powerup.setRudder(rudder, setDone);
+        }
     });
 
     my.keyboard.on('right', function(key) {
-        rudder = Math.max(rudder - 30, -120);
-        canRudder = true;
-        console.log("RIGHT rudder = ", rudder);
+        if (canSet) {
+            canSet = false;
+            rudder = Math.max(rudder - 30, -120);
+            console.log("RIGHT rudder = ", rudder);
+            my.powerup.setRudder(rudder, setDone);
+        }
     });
   }
 }).start();
