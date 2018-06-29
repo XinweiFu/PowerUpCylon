@@ -10,6 +10,7 @@ $ cylon-ble-scan
 # Get the device (TailorToys PowerUp) uuid, copy it to app.js line 5
 ```
 We recorded UUID for 10 planes here:
+
 | Label | PowerUp UUID |
 |-------|--------------|
 |   1   | 0cb2b73fc072 |
