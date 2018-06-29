@@ -1,4 +1,8 @@
 
+## Branches
+The master branch contains the complete code.
+The template branch contains the code template.
+
 ## Setup
 ```bash
 $ ./setup.sh
