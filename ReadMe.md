@@ -12,7 +12,7 @@ $ cylon-ble-scan
 We recorded UUID for 10 planes here:
 
 | Label | PowerUp UUID |
-|-------|--------------|
+|:-----:|:------------:|
 |   1   | 0cb2b73fc072 |
 |   2   | 7c010af716cc |
 |   3   | 0cb2b77e4f10 |
