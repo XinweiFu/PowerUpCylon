@@ -1,0 +1,9 @@
+To-Do List Before Program
+
+1) Rent 10 Laptops (running Ubuntu 14.04)
+2) On each laptop - 
+	a) Execute script that will install environment necessary to run the code (on GitHub) 
+	b) Pick a plane, and add its UUID to the template on that computer
+3) Label each computer and its paired airplane (Plane #1 goes to computer #1, etc)
+4) Charge all plane kits, and check that all are fully functional with their assigned computers
+5) Charge all laptops
