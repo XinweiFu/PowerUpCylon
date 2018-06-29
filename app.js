@@ -12,48 +12,21 @@ Cylon.robot({
   },
 
   work: function(my) {
-    var canSet = true;
-    var thrust = 0;
-    var rudder = 0;
-
-    var setDone = function() {
-      canSet = true;
-    };
 
     my.keyboard.on('up', function(key) {
-      if (canSet) {
-        canSet = false;
-        thrust = Math.min(thrust + 50, 250);
-        console.log("UP thrust = ", thrust); 
-        my.powerup.setThrust(thrust, setDone);
-      }
+
     });
 
     my.keyboard.on('down', function(key) {
-      if (canSet) {
-        canSet = false;
-        thrust = Math.max(thrust - 50, 0);
-        console.log("DOWN thrust = ", thrust);
-        my.powerup.setThrust(thrust, setDone);
-      }
+
     });
 
     my.keyboard.on('left', function(key) {
-      if (canSet) {
-        canSet = false;
-        rudder = Math.min(rudder + 30, 120);
-        console.log("LEFT rudder = ", rudder);
-        my.powerup.setRudder(rudder, setDone);
-      }
+
     });
 
     my.keyboard.on('right', function(key) {
-      if (canSet) {
-        canSet = false;
-        rudder = Math.max(rudder - 30, -120);
-        console.log("RIGHT rudder = ", rudder);
-        my.powerup.setRudder(rudder, setDone);
-      }
+
     });
   }
 }).start();
